@@ -10,7 +10,8 @@ namespace Ch6_P4_ObjectOverrides
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine(" System.Object class ");
+            Console.ReadLine();
         }
     }
 }
