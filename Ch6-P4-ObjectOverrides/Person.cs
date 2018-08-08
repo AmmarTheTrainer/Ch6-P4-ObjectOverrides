@@ -8,6 +8,8 @@ namespace Ch6_P4_ObjectOverrides
 {
     class Person
     {
+
+        public string SSN { get; set; } = "";
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
         public int Age { get; set; }
@@ -22,6 +24,37 @@ namespace Ch6_P4_ObjectOverrides
 
 
         public override string ToString() => $"[First Name: {FirstName}; Last Name: {LastName}; Age: {Age}]";
-        
-    }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Person && obj != null)
+            {
+                Person temp;
+                temp = (Person)obj;
+                if (temp.FirstName == this.FirstName
+                && temp.LastName == this.LastName
+                && temp.Age == this.Age)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        // No need to cast "obj" to a Person anymore,
+        // as everything has a ToString() method.
+        //public override bool Equals(object obj) => obj?.ToString() == ToString();
+
+        // Return a hash code based on a point of unique string data.
+        //public override int GetHashCode() => SSN.GetHashCode();
+
+        // Return a hash code based on the person's ToString() value.
+        public override int GetHashCode() => ToString().GetHashCode();
+    
+}
+
 }
